@@ -12,5 +12,6 @@ RCT_EXPORT_MODULE(RNWebGLViewManager);
 
 RCT_EXPORT_VIEW_PROPERTY(onSurfaceCreate, RCTDirectEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(msaaSamples, NSNumber);
+RCT_EXPORT_VIEW_PROPERTY(onFrame, RCTBubblingEventBlock);
 
 @end

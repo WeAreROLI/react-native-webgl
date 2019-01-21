@@ -41,11 +41,13 @@ export default class WebGLView extends React.Component {
   props: {
     onContextCreate: (gl: WebGLRenderingContext) => void,
     onContextFailure: (e: Error) => void,
+    onFrame: () => void,
     msaaSamples: number
   };
   static propTypes = {
     onContextCreate: PropTypes.func,
     onContextFailure: PropTypes.func,
+    onFrame: PropTypes.func,
     msaaSamples: PropTypes.number,
     ...ViewPropTypes
   };
@@ -58,6 +60,7 @@ export default class WebGLView extends React.Component {
     const {
       onContextCreate, // eslint-disable-line no-unused-vars
       onContextFailure, // eslint-disable-line no-unused-vars
+      onFrame,
       msaaSamples,
       ...viewProps
     } = this.props;
@@ -69,6 +72,7 @@ export default class WebGLView extends React.Component {
         <WebGLView.NativeView
           style={{ flex: 1, backgroundColor: "transparent" }}
           onSurfaceCreate={this.onSurfaceCreate}
+          onFrame={onFrame}
           msaaSamples={Platform.OS === "ios" ? msaaSamples : undefined}
         />
       </View>

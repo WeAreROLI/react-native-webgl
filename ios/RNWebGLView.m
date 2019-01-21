@@ -209,7 +209,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init);
 {
   // Destroy JS binding
   RNWebGLContextDestroy(_ctxId);
-  
+
   // Destroy all objects created to not leak pending work
   [_viewManager.bridge.webglObjectLoader unloadWithCtxId:_ctxId];
 
@@ -236,6 +236,10 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init);
     [EAGLContext setCurrentContext:_eaglCtx];
     RNWebGLContextSetDefaultFramebuffer(_ctxId, _msaaFramebuffer);
     RNWebGLContextFlush(_ctxId);
+
+    if (_onFrame) {
+      _onFrame(@{});
+    }
 
     // Present current state of view buffers
     // TODO(nikki): This should happen exactly at `endFrame()` in the queue
